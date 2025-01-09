@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>New Change Request</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>New Change Request</h1>
+    </header>
+
+    <form action="/submit" method="POST" enctype="multipart/form-data">
+        <div>
+            <label for="project_name">Project Name:</label>
+            <input type="text" id="project_name" name="project_name" required>
+        </div>
+        <div>
+            <label for="change_name">Change Name:</label>
+            <input type="text" id="change_name" name="change_name" required>
+        </div>
+        <div>
+            <label for="date">Date:</label>
+            <input type="date" id="date" name="date" required>
+        </div>
+        <div>
+            <label for="change_no">Change No:</label>
+            <input type="text" id="change_no" name="change_no" required>
+        </div>
+        <div>
+            <label for="location">Location:</label>
+            <input type="text" id="location" name="location" required>
+        </div>
+        <div>
+            <label for="first_name">First Name:</label>
+            <input type="text" id="first_name" name="first_name" required>
+        </div>
+        <div>
+            <label for="last_name">Last Name:</label>
+            <input type="text" id="last_name" name="last_name" required>
+        </div>
+        <div>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+        </div>
+        <div>
+            <label for="phone">Phone Number:</label>
+            <input type="tel" id="phone" name="phone">
+        </div>
+        <div>
+            <label for="job_title">Job Title:</label>
+            <input type="text" id="job_title" name="job_title" required>
+        </div>
+        <div>
+            <label for="request_category">Request Category:</label>
+            <input type="text" id="request_category" name="request_category" required>
+        </div>
+        <div>
+            <label for="priority">Priority:</label>
+            <select id="priority" name="priority" required>
+                <option value="Low">Low</option>
+                <option value="Medium">Medium</option>
+                <option value="High">High</option>
+                <option value="Critical">Critical</option>
+            </select>
+        </div>
+        <div>
+            <label for="description">Change Description:</label>
+            <textarea id="description" name="description" required></textarea>
+        </div>
+        <div>
+            <label for="reason">Reason for Change:</label>
+            <textarea id="reason" name="reason" required></textarea>
+        </div>
+        <div>
+            <label for="impact">Impact:</label>
+            <textarea id="impact" name="impact" required></textarea>
+        </div>
+        <div>
+            <label for="risks">Risks:</label>
+            <textarea id="risks" name="risks" required></textarea>
+        </div>
+        <div>
+            <label for="tools">Work Tools Required:</label>
+            <textarea id="tools" name="tools" required></textarea>
+        </div>
+        <div>
+            <label for="myfile">Select a file:</label>
+            <input type="file" id="myfile" name="myfile">
+        </div>
+        <button type="submit">Submit Request</button>
+    </form>
+
+    <div class="buttons">
+        <button onclick="window.location.href='Base.html'">Return to Home</button>
+    </div>
+</body>
+</html>

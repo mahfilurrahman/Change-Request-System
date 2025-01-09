@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>View Reports</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Reports</h1>
+    </header>
+
+    <table id="requestsTable">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Project Name</th>
+                <th>Change Name</th>
+                <th>Date</th>
+                <th>Priority</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+        <form onsubmit="return validatePassword(event);">
+            <input type="password" id="password" placeholder="Enter password" required>
+            <br>
+            <button type="submit">Submit</button><br>
+        </form>
+
+        <script>
+            function validatePassword(event) {
+                event.preventDefault(); 
+    
+                const correctPassword = "123";
+                
+                const userPassword = document.getElementById("password").value;
+    
+                if (userPassword === correctPassword) {
+                    window.location.href = "Admin.html"; 
+                } else {
+                    alert("Incorrect password. Please try again.");
+                }
+    
+                return false; 
+            }
+        </script>
+    </table>
+
+    <div class="buttons">
+        <button onclick="window.location.href='Base.html'">Return to Home</button>
+    </div>
+
+    <script>
+        function loadRequests() {
+            fetch('/reports')
+                .then(response => response.json())
+                .then(data => {
+                    const tbody = document.querySelector('#requestsTable tbody');
+                    tbody.innerHTML = '';
+                    data.forEach(request => {
+                        const tr = document.createElement('tr');
+                        tr.innerHTML = `
+                            <td>${request.id}</td>
+                            <td>${request.project_name}</td>
+                            <td>${request.change_name}</td>
+                            <td>${request.date}</td>
+                            <td>${request.priority}</td>
+                            <td>${request.status}</td>
+                        `;
+                        tbody.appendChild(tr);
+                    });
+                })
+                .catch(error => console.error('Error:', error));
+        }
+
+        document.addEventListener('DOMContentLoaded', loadRequests);
+    </script>
+</body>
+</html>

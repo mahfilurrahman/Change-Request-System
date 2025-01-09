@@ -1,0 +1,98 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    width: 100%;
+    background-color: lightblue;
+    padding: 25px;
+}
+
+h1 {
+    text-align: center;
+}
+
+.main {
+    font-weight: bold;
+    font-size: 25px;
+    text-align: center;
+    position: relative;
+    top: 10px;
+}
+
+.buttons {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    top: 50px;
+}
+
+button {
+    height: 100px;
+    width: 250px;
+    background-color: lightblue;
+    font-size: 20px;
+}
+
+.buttonstopofpage {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    position: absolute;
+    top: 100px;
+    left: 400px;
+}
+
+.faq {
+    font-size: 20px;
+}
+
+.backdrop {
+    position: relative;
+    left: 500px;
+    top: 150px;
+    height: 500px;
+    width: 600px;
+    background-color: antiquewhite;
+}
+
+form {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+}
+
+form div {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+input, select, textarea {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    background-color: #f2f2f2;
+}

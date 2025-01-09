@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Dashboard</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h1>Reports</h1>
+    <table id="requestsTable">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Project Name</th>
+                <th>Change Name</th>
+                <th>Date</th>
+                <th>Priority</th>
+                <th>Change NO</th>
+                <th>Location</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email</th>
+                <th>Phone Number</th>
+                <th>Job Title</th>
+                <th>Change Description</th>
+                <th>Reason for Change</th>
+                <th>Impact</th>
+                <th>Risks</th>
+                <th>Work Tools Required</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+    <script>
+        function loadRequests() {
+            fetch('/reports')
+                .then(response => response.json())
+                .then(data => {
+                    const tbody = document.querySelector('#requestsTable tbody');
+                    tbody.innerHTML = '';
+                    data.forEach(request => {
+                        const tr = document.createElement('tr');
+                        tr.innerHTML = `
+                            <td>${request.id}</td>
+                            <td>${request.project_name}</td>
+                            <td>${request.change_name}</td>
+                            <td>${request.date}</td>
+                            <td>${request.priority}</td>
+                            <td>${request.change_no}</td>
+                            <td>${request.location}</td>
+                            <td>${request.first_name}</td>
+                            <td>${request.last_name}</td>
+                            <td>${request.email}</td>
+                            <td>${request.phone}</td>
+                            <td>${request.job_title}</td>
+                            <td>${request.description}</td>
+                            <td>${request.reason}</td>
+                            <td>${request.impact}</td>
+                            <td>${request.risks}</td>
+                            <td>${request.tools}</td>
+                            <td>${request.status}</td>
+                            <td>
+                                <select onchange="updateStatus(${request.id}, this.value)">
+                                    <option value="">Select Status</option>
+                                    <option value="Pending">Pending</option>
+                                    <option value="Approved">Approved</option>
+                                    <option value="Rejected">Rejected</option>
+                                </select>
+                            </td>
+                        `;
+                        tbody.appendChild(tr);
+                    });
+                })
+                .catch(error => console.error('Error:', error));
+        }
+
+        function updateStatus(id, status) {
+            fetch('/update-status', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ id, status })
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                alert(data.message);
+                loadRequests();
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Error updating status. Please try again.');
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', loadRequests);
+    </script>
+</body>
+</html>
